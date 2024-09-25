@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #1d1f27; /* Dark background for contrast */
+    color: #f5f5f5; /* Light text color */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh; /* Full height for center alignment */
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #ff9f1c; /* Bright orange color for title */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-weight: 600;
+    font-size: 36px; /* Large title size */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3); /* Text shadow for depth */
+}
+
+.toolbar {
+    margin-bottom: 20px; /* Space below toolbar */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; /* Space between buttons */
+}
+
+button, select {
+    background-color: #ff9f1c; /* Button background */
+    color: white; /* Text color for buttons */
+    border: none;
+    border-radius: 8px; /* Rounded corners */
+    padding: 12px 20px; /* Button padding */
+    font-size: 16px; /* Button text size */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+button:hover, select:hover {
+    transform: translateY(-3px); /* Lift effect on hover */
+    background-color: #ff6b35; /* Darker orange on hover */
+    box-shadow: 0 8px 12px rgba(255, 107, 53, 0.6); /* Deeper shadow on hover */
+}
+
+button:active, select:active {
+    transform: translateY(1px); /* Slight dip effect on click */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4); /* Reduced shadow on active */
+}
+
+select {
+    background-color: #2ec4b6; /* Teal background for select */
+    color: #fff; /* White text for select */
+    padding: 10px 15px; /* Padding for select */
+    border-radius: 8px; /* Rounded corners for select */
+}
+
+.array-container {
+    display: flex;
+    align-items: flex-end; /* Align bars to the bottom */
+    justify-content: center;
+    height: 400px; /* Fixed height for array container */
+    width: 80%; /* Width of array container */
+    background-color: #2d3142; /* Darker background for contrast */
+    border-radius: 10px; /* Rounded corners */
+    padding: 15px; /* Padding for inner space */
+    position: relative; /* Position for overlay */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+}
+
+.array-bar {
+    margin: 0 2px; /* Margin for individual bars */
+    background-color: #ff9f1c; /* Initial bar color */
+    width: 8px; /* Fixed width for bars */
+    border-radius: 2px; /* Rounded corners for bars */
+    transition: height 0.2s ease, background-color 0.2s ease; /* Smooth transitions */
+}
+
+/* Hover effect for individual bars */
+.array-bar:hover {
+    background-color: #2ec4b6; /* Change to teal on hover */
+    box-shadow: 0 2px 8px rgba(46, 196, 182, 0.5); /* Highlight shadow on hover */
+}
+
+/* Swapping bar animation */
+.array-bar.swapped {
+    background-color: #ff6b35; /* Color during swap */
+    animation: swapAnimation 0.2s ease forwards; /* Animation effect */
+}
+
+@keyframes swapAnimation {
+    0% {
+        transform: scale(1); /* Initial scale */
+    }
+    50% {
+        transform: scale(1.1); /* Slight enlargement */
+    }
+    100% {
+        transform: scale(1); /* Return to normal */
+    }
+}
+
+/* Sorted bar effect */
+.array-bar.sorted {
+    background-color: #2ec4b6; /* Teal color for sorted bars */
+    transition: background-color 0.5s ease, height 0.5s ease; /* Smooth transition */
+}
+
+/* Pulsing animation for active sorting */
+#array-container::before {
+    content: "Sorting in Progress..."; /* Overlay text */
+    position: absolute;
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Adjust to true center */
+    font-size: 24px; /* Font size for overlay text */
+    color: rgba(255, 255, 255, 0.1); /* Light text color */
+    text-transform: uppercase; /* Uppercase text */
+    letter-spacing: 1px; /* Letter spacing for effect */
+    z-index: 1; /* Above all other elements */
+}
+
+button:disabled {
+    background-color: #555; /* Disabled button color */
+    cursor: not-allowed; /* Not-allowed cursor on disabled */
+    box-shadow: none; /* No shadow on disabled */
+}
+
+/* Container shadows */
+.array-container::after {
+    content: ''; /* Empty content for overlay */
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0.2)); /* Gradient overlay */
+    pointer-events: none; /* Click-through effect */
+    z-index: 0; /* Below all other elements */
+}
